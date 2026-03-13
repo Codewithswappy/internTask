@@ -12,11 +12,11 @@ export const VALIDATION_MESSAGES = {
 
 // Weather options for DPR form
 export const WEATHER_OPTIONS = [
-  { value: 'Sunny', label: '☀️ Sunny' },
-  { value: 'Cloudy', label: '☁️ Cloudy' },
-  { value: 'Rainy', label: '🌧️ Rainy' },
-  { value: 'Foggy', label: '🌫️ Foggy' },
-  { value: 'Windy', label: '💨 Windy' }
+  { value: 'Sunny', label: 'Sunny' },
+  { value: 'Cloudy', label: 'Cloudy' },
+  { value: 'Rainy', label: 'Rainy' },
+  { value: 'Foggy', label: 'Foggy' },
+  { value: 'Windy', label: 'Windy' }
 ]
 
 // File upload constants

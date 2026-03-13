@@ -1,182 +1,85 @@
-# Construction DPR App
+# Construction Field Management App
 
-A Daily Progress Report (DPR) management system for construction projects built with React and Vite.
+A responsive React.js web application implementing core screens from the Construction Field Management App, including Login, Project List, and Daily Progress Report (DPR) Form.
 
-## Features
+## Tech Stack Used
+- React (v19.2.0)
+- Vite (v7.3.1)
+- Tailwind CSS (v4.2.1)
+- React Router DOM (v7.13.1) for client-side routing
+- Zustand (v5.0.11) for state management
+  > **Note on State Management Choice**: While the requirements suggested using Context API or Redux, I chose to implement Zustand. It avoids the unnecessary re-renders often associated with React Context, while providing a much cleaner, more modern approach to global state management without the heavy boilerplate of Redux. This ensures optimal performance and maintainability.
+- Tabler Icons React (v3.40.0) for UI icons
+- Flux Toast (v1.0.4) for success and error notifications
+- Motion (v12.36.0) for animated transitions
 
-- User authentication with simple login
-- Project listing with search and filter functionality
-- Daily Progress Report form with validation
-- Image upload for progress documentation
-- Responsive design for mobile and desktop
-- Local storage for data persistence
+## How to Clone and Run Locally
 
-## Tech Stack
+1. Clone the repository to your local machine:
+   ```bash
+   git clone <repository-url>
+   ```
 
-- **Frontend**: React 19, Vite
-- **Styling**: Tailwind CSS
-- **Icons**: Tabler Icons
-- **Routing**: React Router DOM
-- **Notifications**: Flux Toast
-- **State Management**: React Hooks (no external state library)
+2. Navigate into the project directory:
+   ```bash
+   cd construction-dpr-app
+   ```
 
-## Prerequisites
+3. Install the required dependencies:
+   ```bash
+   npm install
+   ```
 
-Before running this application, make sure you have the following installed:
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
 
-- Node.js (version 16 or higher)
-- npm or yarn package manager
+5. Open your browser and navigate to the local URL provided by Vite (usually `http://localhost:5173`).
 
-## Installation
-
-1. Clone the repository:
-```bash
-git clone <repository-url>
-cd construction-dpr-app
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Start the development server:
-```bash
-npm run dev
-```
-
-4. Open your browser and navigate to `http://localhost:5173`
-
-## Available Scripts
-
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build
-- `npm run lint` - Run ESLint
-
-## Usage
-
-### Login
+### Login Credentials
+To test the application, please use the following mock credentials on the Login screen:
 - Email: `test@test.com`
 - Password: `123456`
 
-### Creating a DPR
-1. Navigate to the Projects page after login
-2. Click on any project card to open the DPR form
-3. Fill in all required fields:
-   - Project (auto-selected)
-   - Date
-   - Weather conditions
-   - Work description (minimum 10 characters)
-   - Worker count
-   - Progress photos (optional, max 3 images)
-4. Submit the form
+## Features Implemented
 
-### Project Management
-- View all projects on the main dashboard
-- Search projects by name or location
-- Filter projects by status (Active, Pending, Completed)
-- Click on project cards to create DPR entries
+1. **Login Screen**
+   - Mock authentication
+   - Input validation with appropriate error messages on failed attempts
+   - Redirection to the Project List upon successful login
 
-## Project Structure
+2. **Project List Screen**
+   - Displays a list of projects with details like Project Name, Status badge, Start Date, and Location
+   - Clean card-based UI with status color indicators
+   - Navigation to the DPR form for a specific project by clicking its card
+   - Search and filter projects by status
 
-```
-src/
-├── components/          # Reusable UI components
-│   ├── BackButton.jsx
-│   ├── Button.jsx
-│   ├── FormComponents.jsx
-│   ├── ImageUpload.jsx
-│   └── ProjectCard.jsx
-├── pages/              # Page components
-│   ├── DPRForm.jsx
-│   ├── Login.jsx
-│   └── Projects.jsx
-├── constants/          # Application constants
-│   ├── app.js
-│   ├── forms.js
-│   ├── projects.js
-│   └── index.js
-├── utils/             # Utility functions
-│   ├── utils.js
-│   └── index.js
-├── hooks/             # Custom React hooks
-│   └── useFormValidation.js
-└── router/            # Routing configuration
-    └── AppRouter.jsx
-```
+3. **DPR Form Screen**
+   - Fields including selected Project, Date (date picker), Weather (dropdown), Work Description (textarea), and Worker Count (number input)
+   - Photo upload functionality with preview thumbnails for up to 3 images from the local machine
+   - Full form validation for all inputs
+   - Success toast confirmation upon submission
+   - Navigation button to return to the Project List
 
-## Form Validation
+4. **Responsive Design**
+   - Mobile-first approach adapting seamlessly to tablet and desktop screens
+   - Complete absence of horizontal scrolling across breakpoints
 
-The application includes comprehensive form validation:
 
-- **Required fields**: All form fields except images are required
-- **Date validation**: Cannot be more than 7 days in the future
-- **Text validation**: Description must be 10-500 characters
-- **Number validation**: Worker count must be 1-1000
-- **File validation**: Images must be under 5MB, accepted formats: JPEG, PNG, WebP, GIF
+## Features Not Implemented
+- Backend API integration (currently uses mock data and local storage for persisting submitted DPR forms)
 
-## Data Storage
 
-The application uses browser localStorage to persist:
-- DPR reports
-- User preferences
+## Known Issues or Limitations
+- Uploaded photos in the DPR form generate local blob URLs for preview purposes only; they do not persist across different browser sessions or devices since there is no backend storage.
+- The project list uses static, hard-coded data as per the initial task requirements.
 
-Data is automatically saved when forms are submitted and persists across browser sessions.
 
-## Responsive Design
-
-The application is fully responsive with breakpoints:
-- Mobile: 375px and up
-- Tablet: 640px and up
-- Desktop: 1024px and up
-- Large screens: 1280px and up
-
-## Browser Support
-
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
-
-## Development
-
-### Code Organization
-
-- **Components**: Reusable UI components with consistent naming
-- **Pages**: Route-level components
-- **Constants**: Application-wide constants and configuration
-- **Utils**: Helper functions and utilities
-- **Hooks**: Custom React hooks for state management
-
-### Styling
-
-- Tailwind CSS for utility-first styling
-- Custom components with consistent design system
-- Mobile-first responsive approach
-
-## Troubleshooting
-
-### Common Issues
-
-1. **Port already in use**: Change the port in `vite.config.js` or kill the process using the port
-2. **Dependencies not installing**: Delete `node_modules` and `package-lock.json`, then run `npm install`
-3. **Images not displaying**: Check file format and size limits (max 5MB)
-
-### Development Tips
-
-- Use browser developer tools to debug responsive design
-- Check browser console for any JavaScript errors
-- Ensure localStorage is enabled in your browser
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## License
-
-This project is licensed under the MIT License.
+## Code Organization
+- `src/components/`: Reusable, modular UI components.
+- `src/pages/`: Core application screens (Login, Project List, DPR Form).
+- `src/constants/`: Hardcoded mock data and application constants.
+- `src/hooks/`: Custom custom React hooks to manage specific behaviors (e.g., form validation).
+- `src/utils/`: Helper functions.
+- `src/router/`: Client-side routing setup using React Router v6.
